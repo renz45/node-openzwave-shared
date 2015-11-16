@@ -44,6 +44,7 @@ namespace OZW {
 	CommandMap* ctrlCmdNames;
 
 	std::string ozw_userpath;
+
 	const std::string ozw_config_path  = stringify( OPENZWAVE_ETC );
 
 	// ===================================================================
@@ -225,7 +226,8 @@ namespace OZW {
 				option_overrides += " --" + keyname + " " + argvalstr;
 			}
 		}
-		std::cout << "Initialising OpenZWave (" << OpenZWave::Manager::getVersionAsString() << ") binary addon for Node.JS.\n";
+		std::cout <<  "ETCTY\n" << stringify( OPENZWAVE_ETC ) << "\n\n" << stringify( OPENZWAVE_DOC )<< "\n\noptions:\n" << ozw_config_path << "\n" << ozw_userpath << "\n" << option_overrides << "\n\n\n";
+		// std::cout << "Initialising OpenZWave (" << OpenZWave::Manager::getVersionAsString() << ") binary addon for Node.JS.\n";
 		std::cout << "\tZWave device db  : " << ozw_config_path << "\n\tUser settings    : " << ozw_userpath << "\n";
 		if (option_overrides.length() > 0) {
 			std::cout << "\tOption Overrides :" << option_overrides << "\n";
@@ -235,6 +237,7 @@ namespace OZW {
 #else
 	std::cout << "\tSecurity API not found, using legacy BeginControllerCommand() instead\n";
 #endif
+
 		// scan for OpenZWave options.xml in the nodeJS module's '/config' subdirectory
 		OpenZWave::Options::Create(ozw_config_path, ozw_userpath, option_overrides);
 		OpenZWave::Options::Get()->Lock();
